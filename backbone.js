@@ -1415,6 +1415,11 @@
 
     // Default JSON-request options.
     var params = {type: type, dataType: 'json'};
+    
+    //sessionid cookie for tastypie
+    if (readCookie('sessionid') !== null) { //If the cookie exist
+        params.headers = {Secret:readCookie('sessionid')}; //Put it into the headers
+    }
 
     // Ensure that we have a URL.
     if (!options.url) {
